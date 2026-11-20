@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dokumentasi Aplikasi — SEOPulse &amp; WP Central</title>
+<style>
+:root{--bg:#080d18;--panel:#111827;--panel2:#0d1424;--line:#243049;--text:#e8edf7;--muted:#9aa7bd;--accent:#6ee7b7;--accent2:#60a5fa;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#16264a 0%,transparent 60%),var(--bg);color:var(--text);font:15px/1.7 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--accent2)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+header{padding:64px 0 40px;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+h2{font-size:24px;margin:0 0 14px}
+h3{font-size:17px;margin:22px 0 8px}
+p{color:var(--muted);margin:8px 0}
+.lead{font-size:18px;max-width:720px}
+.tag{display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;margin:0 6px 6px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:28px 0}
+.card{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:16px;padding:24px}
+.card h2{margin-bottom:6px}
+.card .meta{color:var(--accent);font-size:13px;font-weight:600}
+section{padding:36px 0;border-bottom:1px solid var(--line)}
+code,pre{font-family:ui-monospace,Consolas,monospace;font-size:13px}
+code{background:#0b1220;border:1px solid var(--line);padding:2px 6px;border-radius:6px}
+pre{background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--text)}
+td{color:var(--muted)}
+.note{border-left:3px solid var(--warn);padding:10px 14px;background:#1b1608;border-radius:0 10px 10px 0;color:#fde68a}
+footer{padding:34px 0 60px;color:var(--muted);font-size:13px}
+ul{padding-left:20px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Dokumentasi Aplikasi</h1>
+  <p class="lead">Panduan singkat untuk dua aplikasi internal: <strong>SEOPulse</strong> (analisis SEO) dan <strong>WP Central</strong> (pusat monitoring situs WordPress). Situs ini hanya dokumentasi; kode sumber aplikasi disimpan di repository GitHub private.</p>
+  <div>
+    <span class="tag">PHP</span><span class="tag">MySQL / SQLite</span><span class="tag">cPanel</span><span class="tag">Tanpa Composer</span>
+  </div>
+</header>
+
+<section>
+  <div class="grid">
+    <div class="card">
+      <div class="meta">ANALISIS SEO</div>
+      <h2>SEOPulse</h2>
+      <p>Dashboard SEO berbasis PHP + MySQL untuk mengelola proyek, riset kata kunci, peringkat, backlink, konten, trafik, kompetitor, audit, dan laporan.</p>
+      <p><a href="#seopulse">Lihat dokumentasi →</a></p>
+    </div>
+    <div class="card">
+      <div class="meta">WORDPRESS FLEET</div>
+      <h2>WP Central</h2>
+      <p>Panel terpusat untuk memantau banyak situs WordPress: uptime, update, backup, keamanan, database, klien, dan laporan otomatis. PHP 8 + SQLite.</p>
+      <p><a href="#wp-central">Lihat dokumentasi →</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="seopulse">
+  <h2>SEOPulse</h2>
+  <p>Aplikasi PHP + MySQL. Proses instalasi membuat database, tabel, dan file <code>config.php</code> berisi kredensial database.</p>
+
+  <h3>Kebutuhan</h3>
+  <ul>
+    <li>PHP 8 dengan ekstensi PDO MySQL.</li>
+    <li>MySQL/MariaDB dan satu database beserta user database.</li>
+    <li>HTTPS dan direktori web yang tidak bisa di-list.</li>
+  </ul>
+
+  <h3>Instalasi di cPanel</h3>
+  <ol>
+    <li>Upload arsip aplikasi ke folder tujuan, lalu extract.</li>
+    <li>Buat database + user database di cPanel; berikan hak akses penuh.</li>
+    <li>Buka <code>/install.php</code>, isi kredensial database dan akun administrator.</li>
+    <li>Setelah sukses, hapus <code>install.php</code> dari web root.</li>
+  </ol>
+  <p class="note"><strong>Keamanan:</strong> <code>config.php</code> menyimpan kredensial database dalam bentuk teks di server. Jangan pernah meng-commit atau mempublikasikan file ini.</p>
+
+  <h3>Modul utama</h3>
+  <table>
+    <tr><th>Area</th><th>Isi</th></tr>
+    <tr><td>Riset</td><td>Kata kunci, peringkat, kompetitor, backlink</td></tr>
+    <tr><td>Konten &amp; trafik</td><td>Analisis konten, grafik trafik, pertumbuhan</td></tr>
+    <tr><td>Operasional</td><td>Proyek, audit, laporan, pengaturan, API token</td></tr>
+  </table>
+</section>
+
+<section id="wp-central">
+  <h2>WP Central</h2>
+  <p>Dashboard terpusat untuk merawat banyak situs WordPress. Dibangun dengan PHP 8 + SQLite: tanpa MySQL, tanpa Composer, tanpa build asset.</p>
+
+  <h3>Kebutuhan server</h3>
+  <ul>
+    <li>PHP 8.0+ dengan ekstensi <code>pdo_sqlite</code>, <code>sqlite3</code>, <code>curl</code>, <code>mbstring</code>, <code>openssl</code>, <code>zip</code>.</li>
+    <li>Apache/LiteSpeed dengan <code>.htaccess</code> standar cPanel.</li>
+    <li>Folder aplikasi writable untuk <code>config.php</code>, <code>data/</code>, dan <code>reports/</code>.</li>
+  </ul>
+
+  <h3>Instalasi di cPanel</h3>
+  <ol>
+    <li>Upload <code>wp-central.zip</code> ke folder tujuan, lalu extract supaya <code>index.php</code>, <code>install.php</code>, <code>core/</code> berada langsung di folder tersebut.</li>
+    <li>Set permission folder ke <code>755</code>.</li>
+    <li>Buka <code>/install.php</code>; isi nama workspace, akun admin, zona waktu, dan URL aplikasi. Salin Cron URL yang muncul.</li>
+    <li>Tambah cron cPanel tiap <strong>5 menit</strong>:
+      <pre>curl -s "https://panel.domainanda.com/cron.php?key=CRON_KEY_ANDA" &gt; /dev/null</pre>
+    </li>
+    <li>Aktifkan HTTPS dan backup berkala file <code>data/wpcentral.sqlite</code>.</li>
+  </ol>
+
+  <h3>Menghubungkan situs WordPress</h3>
+  <ol>
+    <li>Di panel: <strong>Situs → Tambah situs</strong>, lalu simpan token konektor dari tab Pengaturan.</li>
+    <li>Di WordPress target: upload dan aktifkan <code>wp-central-connector.zip</code>.</li>
+    <li>Buka <strong>Settings → WP Central</strong>, isi URL dashboard (tanpa <code>/api.php</code>) dan token, lalu Simpan.</li>
+    <li>Klik <strong>Sinkronisasi Sekarang</strong>. Job update/backup/scan dijalankan WP-Cron tiap 5 menit.</li>
+  </ol>
+
+  <h3>Modul utama</h3>
+  <table>
+    <tr><th>Area</th><th>Isi</th></tr>
+    <tr><td>Monitoring</td><td>Uptime, insiden, SSL, latensi, health score</td></tr>
+    <tr><td>Perawatan</td><td>Update plugin/tema/core, backup, keamanan, optimasi database</td></tr>
+    <tr><td>Laporan</td><td>Laporan white-label per situs/portofolio, jadwal otomatis, antrean email</td></tr>
+    <tr><td>Administrasi</td><td>Klien, aktivitas/audit, branding, notifikasi, data demo</td></tr>
+  </table>
+  <p class="note"><strong>Keamanan:</strong> token konektor bersifat rahasia; rotasi bila bocor. Folder <code>core/</code>, <code>modules/</code>, <code>data/</code>, <code>reports/</code>, dan <code>uploads/</code> harus mengembalikan 403 untuk publik. File <code>data/wpcentral.sqlite</code> adalah seluruh database panel.</p>
+</section>
+
+<section id="catatan">
+  <h2>Catatan</h2>
+  <p>Halaman ini sengaja tidak memuat kata sandi, token produksi, atau kredensial database. Untuk akses aplikasi, gunakan kredensial yang tersimpan di OpenBot Vault. Informasi instalasi di atas ringkasan dari README aplikasi; rincian lengkap ada di repository kode masing-masing.</p>
+</section>
+
+<footer>Dokumentasi internal — diperbarui 20 November 2026.</footer>
+</div>
+</body>
+</html>
